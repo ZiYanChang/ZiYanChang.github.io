@@ -1,1036 +1,621 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Curious Beast Academy | Young Entrepreneurs Programme</title>
+
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Google Fonts: Retro 80s Handcraft, Typewriter & Friendly Academic -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Fredoka:wght@500;600;700&family=Patrick+Hand&family=Newsreader:ital,opsz,wght@0,6..72,600;0,6..72,700;1,6..72,500&display=swap" rel="stylesheet">
-  
+
+  <!-- ============================================================
+       1. THEME  (colours, fonts, shadows)
+       ============================================================ -->
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            cbNavy: '#162836',
-            cbTeal: '#206E7A',
-            cbTealSoft: '#378B99',
-            cbRust: '#C14B33',
-            cbCoral: '#D9654C',
-            cbGold: '#E6A12F',
-            cbGoldLight: '#F7D677',
-            cbSage: '#69876E',
-            paperCream: '#FAF5EA',
-            paperManila: '#F2E8D2',
-            paperCard: '#FFFDF9',
-            paperDark: '#E7DEC7',
+            navy: '#162836', teal: '#206E7A', rust: '#C14B33', coral: '#D9654C',
+            gold: '#E6A12F', 'gold-light': '#F7D677', sage: '#69876E',
+            cream: '#FAF5EA', manila: '#F2E8D2', card: '#FFFDF9', 'paper-dark': '#E7DEC7',
           },
           fontFamily: {
             brand: ['Fredoka', 'system-ui', 'sans-serif'],
-            serifDoc: ['Newsreader', 'Georgia', 'serif'],
-            typewriter: ['"Courier Prime"', 'monospace'],
-            hand: ['"Patrick Hand"', '"Caveat"', 'cursive'],
-            scribble: ['Caveat', 'cursive'],
+            serif: ['Newsreader', 'Georgia', 'serif'],
+            type: ['"Courier Prime"', 'monospace'],
+            hand: ['"Patrick Hand"', 'Caveat', 'cursive'],
           },
           boxShadow: {
-            'retro-sm': '2px 2px 0px rgba(22, 40, 54, 0.9)',
-            'retro': '4px 4px 0px rgba(22, 40, 54, 0.95)',
-            'retro-lg': '7px 7px 0px rgba(22, 40, 54, 0.95)',
-            'paper': '0 8px 20px -6px rgba(45, 30, 15, 0.25)',
-          }
-        }
-      }
-    }
+            'retro-sm': '2px 2px 0 rgba(22,40,54,.9)',
+            retro: '4px 4px 0 rgba(22,40,54,.95)',
+            'retro-lg': '7px 7px 0 rgba(22,40,54,.95)',
+          },
+        },
+      },
+    };
   </script>
 
-  <style>
-    /* Tactile Craft Paper Background */
-    body {
-      background-color: #FAF5EA;
-      background-image: 
-        radial-gradient(#d3c8b0 0.8px, transparent 0.8px),
-        linear-gradient(to right, rgba(22, 40, 54, 0.02) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(22, 40, 54, 0.02) 1px, transparent 1px);
-      background-size: 20px 20px, 16px 16px, 16px 16px;
-      color: #162836;
-      overflow-x: hidden;
-    }
-
-    /* Grid lines for engineering / notebook sections */
-    .ledger-grid {
-      background-color: #fdfaf2;
-      background-image: 
-        linear-gradient(#206e7a18 1px, transparent 1px),
-        linear-gradient(90deg, #206e7a18 1px, transparent 1px);
-      background-size: 20px 20px;
-    }
-
-    .lined-notebook {
-      background-color: #FFFDF9;
-      background-image: linear-gradient(#e4dcce 1px, transparent 1px);
-      background-size: 100% 32px;
-      line-height: 32px;
-    }
-
-    /* Washi tape accents */
-    .tape-gold {
-      background: rgba(247, 214, 119, 0.9);
-      clip-path: polygon(2% 0%, 98% 3%, 100% 92%, 97% 100%, 0% 96%, 3% 8%);
-      box-shadow: 0 1px 3px rgba(0,0,0,0.15);
-      border-left: 1px dashed rgba(0,0,0,0.2);
-      border-right: 1px dashed rgba(0,0,0,0.2);
-    }
-    .tape-teal {
-      background: rgba(32, 110, 122, 0.82);
-      clip-path: polygon(0% 3%, 99% 1%, 98% 97%, 1% 100%);
-      box-shadow: 0 1px 3px rgba(0,0,0,0.15);
-    }
-    .tape-rust {
-      background: rgba(217, 101, 76, 0.85);
-      clip-path: polygon(3% 0%, 97% 2%, 99% 95%, 2% 98%);
-    }
-
-    /* Rubber Ink Stamp */
-    .stamped-badge {
-      border: 3px double #C14B33;
-      color: #C14B33;
-      font-family: 'Courier Prime', monospace;
-      text-transform: uppercase;
-      transform: rotate(-4deg);
-      display: inline-block;
-      letter-spacing: 1.5px;
-      box-shadow: inset 0 0 4px rgba(193, 75, 51, 0.25);
-    }
-
-    /* Scribble Underline */
-    .drawn-line {
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 14' preserveAspectRatio='none'%3E%3Cpath d='M2 9c35-5 85 5 120-4 25-6 50 3 76-2' fill='none' stroke='%23C14B33' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: bottom center;
-      background-size: 100% 10px;
-      padding-bottom: 5px;
-    }
-
-    /* Accessibility / reduced-motion */
-    @media (prefers-reduced-motion: reduce) {
-      *, ::before, ::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
+  <!-- ============================================================
+       2. COMPONENT CLASSES  (written once, reused everywhere)
+       ============================================================ -->
+  <style type="text/tailwindcss">
+    @layer base {
+      body {
+        @apply bg-cream text-navy antialiased overflow-x-hidden;
+        background-image:
+          radial-gradient(#d3c8b0 .8px, transparent .8px),
+          linear-gradient(to right, rgba(22,40,54,.02) 1px, transparent 1px),
+          linear-gradient(to bottom, rgba(22,40,54,.02) 1px, transparent 1px);
+        background-size: 20px 20px, 16px 16px, 16px 16px;
       }
+      html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+    }
+
+    @layer components {
+      /* Layout */
+      .container-page { @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8; }
+      .section { @apply py-14; }
+
+      /* Surfaces */
+      .panel       { @apply relative rounded-2xl border-[3px] border-navy p-6 shadow-retro-lg sm:p-8; }
+      .panel-card  { @apply panel bg-card; }
+      .panel-manila{ @apply panel bg-manila; }
+      .note        { @apply rounded border border-navy/30 bg-cream p-3; }
+
+      /* Typography */
+      .label       { @apply font-type text-xs font-bold uppercase tracking-wider; }
+      .h-section   { @apply font-brand text-3xl font-extrabold text-navy sm:text-4xl; }
+      .lede        { @apply font-serif text-lg italic text-navy/85 sm:text-xl; }
+
+      /* Buttons */
+      .btn {
+        @apply inline-flex items-center justify-center gap-2 rounded-lg border-2 border-navy px-5 py-3
+               font-type text-sm font-bold shadow-retro transition-all
+               hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-retro-sm;
+      }
+      .btn-primary   { @apply btn bg-navy text-cream hover:bg-teal; }
+      .btn-secondary { @apply btn bg-card text-navy hover:bg-cream; }
+      .btn-accent    { @apply btn bg-rust font-brand text-cream hover:bg-coral; }
+
+      /* Form fields */
+      .field       { @apply w-full rounded border-2 border-navy bg-white px-3 py-2 font-type text-sm text-navy focus:outline-none focus:ring-2 focus:ring-coral; }
+
+      /* Tags / badges */
+      .tag         { @apply inline-block rounded border border-navy bg-gold-light px-2 py-0.5 font-type text-xs font-bold text-navy; }
+      .stamp {
+        @apply inline-block -rotate-[4deg] border-[3px] border-double border-rust px-2.5 py-0.5
+               font-type text-xs uppercase tracking-[1.5px] text-rust;
+        box-shadow: inset 0 0 4px rgba(193,75,51,.25);
+      }
+
+      /* Washi tape */
+      .tape        { @apply absolute z-10 pointer-events-none shadow; }
+      .tape-gold   { @apply tape bg-gold-light/90; clip-path: polygon(2% 0,98% 3%,100% 92%,97% 100%,0 96%,3% 8%); }
+      .tape-teal   { @apply tape bg-teal/80;       clip-path: polygon(0 3%,99% 1%,98% 97%,1% 100%); }
+      .tape-rust   { @apply tape bg-coral/85;      clip-path: polygon(3% 0,97% 2%,99% 95%,2% 98%); }
+
+      /* Paper textures */
+      .ledger-grid {
+        background-color: #fdfaf2;
+        background-image: linear-gradient(#206e7a18 1px, transparent 1px), linear-gradient(90deg, #206e7a18 1px, transparent 1px);
+        background-size: 20px 20px;
+      }
+      .lined-notebook {
+        background-color: #FFFDF9;
+        background-image: linear-gradient(#e4dcce 1px, transparent 1px);
+        background-size: 100% 32px;
+      }
+
+      /* Hand-drawn underline */
+      .scribble {
+        padding-bottom: 5px;
+        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 14' preserveAspectRatio='none'%3E%3Cpath d='M2 9c35-5 85 5 120-4 25-6 50 3 76-2' fill='none' stroke='%23C14B33' stroke-width='3.5' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat bottom center / 100% 10px;
+      }
+
+      /* Nav + tabs */
+      .nav-link    { @apply px-3 py-1.5 font-type text-xs font-bold text-navy transition-transform hover:-translate-y-0.5 hover:text-rust; }
+      .belief-tab  { @apply flex w-full items-center justify-between rounded-lg border-2 border-navy bg-card p-3.5 text-left font-type text-sm font-bold text-navy shadow-retro-sm transition-all hover:bg-cream; }
+      .belief-tab[aria-selected="true"] { @apply bg-navy text-cream hover:bg-navy; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, ::before, ::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
     }
   </style>
 </head>
-<body class="antialiased min-h-screen flex flex-col font-sans selection:bg-cbGoldLight selection:text-cbNavy">
 
-  <aside class="bg-cbNavy text-paperCream text-xs font-typewriter py-2 px-4 border-b-2 border-cbRust flex flex-wrap justify-between items-center z-40">
-    <div class="flex items-center gap-2 mx-auto md:mx-0">
-      <span class="inline-block w-2.5 h-2.5 rounded-full bg-cbGold animate-pulse"></span>
-      <span class="tracking-wide">CURIOUS BEAST ACADEMY • YOUNG ENTREPRENEURS PROGRAMME (FOUNDATIONAL BLUEPRINT)</span>
+<body class="flex min-h-screen flex-col font-sans selection:bg-gold-light selection:text-navy">
+
+  <!-- ===== Top strip ===== -->
+  <aside class="flex flex-wrap items-center justify-between border-b-2 border-rust bg-navy px-4 py-2 font-type text-xs text-cream">
+    <div class="mx-auto flex items-center gap-2 md:mx-0">
+      <span class="h-2.5 w-2.5 animate-pulse rounded-full bg-gold"></span>
+      <span class="tracking-wide">CURIOUS BEAST ACADEMY • YOUNG ENTREPRENEURS PROGRAMME</span>
     </div>
-    <div class="hidden md:flex items-center gap-4 text-[11px] text-paperDark">
+    <div class="hidden gap-4 text-[11px] text-paper-dark md:flex">
       <span>🚫 100% Device-Free Space</span>
       <span>🪙 Physical Tokens &amp; Paper First</span>
     </div>
   </aside>
 
-  <header class="sticky top-0 z-30 bg-paperCream/95 backdrop-blur-sm border-b-4 border-cbNavy shadow-sm transition-all">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
-      
-      <!-- Brand lockup: Exact uploaded attachment image beside the typography -->
-      <a href="#hero" class="flex items-center gap-3 sm:gap-4 group focus:outline-none focus:ring-2 focus:ring-cbCoral rounded-xl p-1">
-        <!-- Logo Image from user attachment -->
-        <div class="relative w-12 h-12 sm:w-16 sm:h-16 flex-shrink-0 bg-paperManila rounded-xl border-2 border-cbNavy p-0.5 shadow-retro-sm transition-transform group-hover:-rotate-2 overflow-hidden">
-          <div class="tape-gold w-6 h-2.5 absolute -top-1 -right-1 z-10 -rotate-12 pointer-events-none"></div>
-          <img 
-            src="attachment:Screenshot 2026-10-01 at 17.24.31.jpg" 
-            alt="Curious Beast Academy Mascot" 
-            class="w-full h-full object-contain rounded-lg"
-          >
-        </div>
+  <!-- ===== Header ===== -->
+  <header class="sticky top-0 z-30 border-b-4 border-navy bg-cream/95 backdrop-blur-sm">
+    <div class="container-page flex items-center justify-between py-3">
 
-        <!-- Academy Title beside the logo -->
-        <div class="flex flex-col">
+      <a href="#hero" class="group flex items-center gap-3 rounded-xl p-1 focus:outline-none focus:ring-2 focus:ring-coral">
+        <!-- Swap the emoji for <img src="your-logo.jpg" class="h-full w-full object-contain"> -->
+        <div class="relative flex h-12 w-12 items-center justify-center rounded-xl border-2 border-navy bg-manila text-2xl shadow-retro-sm transition-transform group-hover:-rotate-2 sm:h-16 sm:w-16 sm:text-3xl">
+          <span class="tape-gold -right-1 -top-1 h-2.5 w-6 -rotate-12"></span>
+          🦖
+        </div>
+        <div>
           <div class="flex items-baseline gap-2">
-            <span class="font-brand font-bold text-2xl sm:text-3xl text-cbNavy tracking-tight">
-              Curious<span class="text-cbRust ml-1">Beast</span>
-            </span>
-            <span class="hidden sm:inline-block font-typewriter text-[10px] bg-cbGoldLight text-cbNavy px-2 py-0.5 rounded border border-cbNavy font-bold uppercase">
-              Academy
-            </span>
+            <span class="font-brand text-2xl font-bold tracking-tight sm:text-3xl">Curious<span class="ml-1 text-rust">Beast</span></span>
+            <span class="tag hidden text-[10px] uppercase sm:inline-block">Academy</span>
           </div>
-          <p class="font-typewriter text-xs text-cbTeal font-bold tracking-tight">
-            Young Entrepreneurs Programme <span class="hidden md:inline text-cbRust">• Analog Workshop</span>
+          <p class="font-type text-xs font-bold text-teal">
+            Young Entrepreneurs Programme <span class="hidden text-rust md:inline">• Analog Workshop</span>
           </p>
         </div>
       </a>
 
-      <!-- Desktop Navigation Menu -->
-      <nav class="hidden lg:flex items-center space-x-1" aria-label="Main Navigation">
-        <a href="#why-entrepreneurship" class="px-3 py-1.5 font-typewriter text-xs font-bold text-cbNavy hover:text-cbRust hover:-translate-y-0.5 transition-transform">
-          [ 01. Why Kids? ]
-        </a>
-        <a href="#habits" class="px-3 py-1.5 font-typewriter text-xs font-bold text-cbNavy hover:text-cbTeal hover:-translate-y-0.5 transition-transform">
-          [ 02. The 5 Habits ]
-        </a>
-        <a href="#guiding-beliefs" class="px-3 py-1.5 font-typewriter text-xs font-bold text-cbNavy hover:text-cbCoral hover:-translate-y-0.5 transition-transform">
-          [ 03. Guiding Beliefs ]
-        </a>
-        <a href="#discovery-session" class="px-3 py-1.5 font-typewriter text-xs font-bold text-cbNavy hover:text-cbSage hover:-translate-y-0.5 transition-transform">
-          [ 04. Discovery Session ]
-        </a>
-        <a href="#enquiry-slip" class="ml-3 inline-flex items-center justify-center px-4 py-2 font-brand font-bold text-sm text-paperCream bg-cbRust hover:bg-cbCoral rounded-md border-2 border-cbNavy shadow-retro hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-retro-sm transition-all">
-          Enrolment Docket ✎
-        </a>
-      </nav>
+      <nav id="desktopNav" class="hidden items-center lg:flex" aria-label="Main navigation"></nav>
 
-      <!-- Mobile Menu Button -->
-      <button id="mobileMenuBtn" type="button" class="lg:hidden p-2 bg-paperManila rounded-md border-2 border-cbNavy shadow-retro-sm text-cbNavy focus:outline-none" aria-expanded="false" aria-label="Toggle navigation menu">
-        <svg id="menuIcon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-        <svg id="closeIcon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12" />
+      <button id="menuBtn" type="button" aria-expanded="false" aria-controls="mobileMenu" aria-label="Toggle navigation menu"
+              class="rounded-md border-2 border-navy bg-manila p-2 shadow-retro-sm lg:hidden">
+        <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <path id="menuIconPath" stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
         </svg>
       </button>
     </div>
 
-    <!-- Mobile Drawer Menu -->
-    <div id="mobileMenu" class="hidden lg:hidden bg-paperManila border-b-4 border-cbNavy px-6 py-4 space-y-2 font-typewriter shadow-inner">
-      <div class="tape-gold w-24 h-3 mx-auto mb-2"></div>
-      <a href="#why-entrepreneurship" class="mobile-nav-link block py-2 text-cbNavy font-bold text-sm border-b border-dashed border-cbNavy/20">
-        ➔ 01. Why Teach Kids Entrepreneurship
-      </a>
-      <a href="#habits" class="mobile-nav-link block py-2 text-cbNavy font-bold text-sm border-b border-dashed border-cbNavy/20">
-        ➔ 02. The 5 Core Habits
-      </a>
-      <a href="#guiding-beliefs" class="mobile-nav-link block py-2 text-cbNavy font-bold text-sm border-b border-dashed border-cbNavy/20">
-        ➔ 03. The 5 Guiding Beliefs
-      </a>
-      <a href="#discovery-session" class="mobile-nav-link block py-2 text-cbNavy font-bold text-sm border-b border-dashed border-cbNavy/20">
-        ➔ 04. Module 1: The Discovery Session
-      </a>
-      <a href="#enquiry-slip" class="mobile-nav-link block py-2.5 mt-2 text-center bg-cbRust text-paperCream font-brand font-bold rounded border-2 border-cbNavy shadow-retro-sm">
-        File Enrolment Inquiry
-      </a>
-    </div>
+    <div id="mobileMenu" class="hidden space-y-2 border-b-4 border-navy bg-manila px-6 py-4 font-type lg:hidden"></div>
   </header>
 
   <main class="flex-grow">
-    
-    <section id="hero" class="relative py-12 md:py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-      
-      <!-- Manila Document Folder Container -->
-      <div class="bg-paperManila border-3 border-cbNavy rounded-2xl p-6 sm:p-10 shadow-retro-lg relative overflow-hidden">
-        
-        <!-- Folder Label Tab -->
-        <div class="inline-block bg-cbRust text-paperCream font-typewriter text-xs uppercase font-bold px-4 py-1.5 rounded-md border-2 border-cbNavy shadow-retro-sm mb-4 -rotate-1">
+
+    <!-- ===== 1. Hero ===== -->
+    <section id="hero" class="container-page py-12 md:py-16">
+      <div class="panel-manila overflow-hidden sm:p-10">
+        <div class="mb-4 inline-block -rotate-1 rounded-md border-2 border-navy bg-rust px-4 py-1.5 font-type text-xs font-bold uppercase text-cream shadow-retro-sm">
           FILE REF: YEP-CORE-PREAMBLE
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          
-          <!-- Left Column: Title, Core Purpose & Reader Callouts -->
-          <div class="lg:col-span-8 space-y-4">
-            
-            <h1 class="font-brand font-extrabold text-3xl sm:text-5xl lg:text-6xl text-cbNavy leading-[1.1]">
-              Young Entrepreneurs <br>
-              <span class="text-cbRust drawn-line">Programme</span>
+        <div class="grid items-center gap-8 lg:grid-cols-12">
+          <div class="space-y-4 lg:col-span-8">
+            <h1 class="font-brand text-3xl font-extrabold leading-[1.1] sm:text-5xl lg:text-6xl">
+              Young Entrepreneurs <br><span class="scribble text-rust">Programme</span>
             </h1>
-
-            <p class="font-serifDoc text-xl sm:text-2xl text-cbNavy/90 italic font-medium leading-snug">
+            <p class="font-serif text-xl font-medium italic leading-snug text-navy/90 sm:text-2xl">
               Building agency, character, and lifelong habits in children — not miniature corporate founders.
             </p>
 
-            <!-- Preamble Section from User Text -->
-            <div class="bg-paperCard p-5 sm:p-6 rounded-xl border-2 border-cbNavy shadow-retro relative rotate-[-0.5deg]">
-              <div class="tape-teal w-28 h-4 absolute -top-2 left-6 z-10"></div>
-              
-              <div class="flex items-center gap-2 mb-2 font-typewriter text-xs text-cbTeal font-bold uppercase tracking-wider">
-                <span>📑</span> 1. Programme Preamble &amp; Scope
-              </div>
-              
-              <p class="font-sans text-sm sm:text-base text-cbNavy/90 leading-relaxed font-normal">
+            <div class="panel-card -rotate-[0.5deg] !p-5 shadow-retro sm:!p-6">
+              <span class="tape-teal -top-2 left-6 h-4 w-28"></span>
+              <p class="label mb-2 text-teal">📑 1. Programme Preamble &amp; Scope</p>
+              <p class="text-sm leading-relaxed text-navy/90 sm:text-base">
                 This foundation sets out why the <strong>Young Entrepreneurs Programme</strong> exists, what it aims to build in a child, and how it is structured from the very first session to the final showcase. The <em>Discovery Session</em> covers the first module in detail. This document sits above it and sets the reasoning the rest of the programme follows.
               </p>
-
-              <!-- Two Readers Callout -->
-              <div class="mt-4 pt-3 border-t-2 border-dashed border-cbNavy/20 grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div class="bg-paperCream p-2.5 rounded border border-cbNavy/30 flex items-start gap-2">
+              <div class="mt-4 grid gap-3 border-t-2 border-dashed border-navy/20 pt-3 sm:grid-cols-2">
+                <div class="note flex gap-2 font-type text-xs">
                   <span class="text-lg">🧑‍🏫</span>
-                  <div class="font-typewriter text-xs">
-                    <strong class="text-cbNavy block uppercase">For Facilitators:</strong>
-                    The pedagogical compass for running physical sessions without dogma.
-                  </div>
+                  <p><strong class="block uppercase">For Facilitators:</strong>The pedagogical compass for running physical sessions without dogma.</p>
                 </div>
-                <div class="bg-paperCream p-2.5 rounded border border-cbNavy/30 flex items-start gap-2">
+                <div class="note flex gap-2 font-type text-xs">
                   <span class="text-lg">👨‍👩‍👧</span>
-                  <div class="font-typewriter text-xs">
-                    <strong class="text-cbNavy block uppercase">For Parents &amp; Partners:</strong>
-                    The transparent standard for deciding whether to enrol your child.
-                  </div>
+                  <p><strong class="block uppercase">For Parents &amp; Partners:</strong>The transparent standard for deciding whether to enrol your child.</p>
                 </div>
               </div>
-
             </div>
 
-            <!-- Action buttons -->
             <div class="flex flex-wrap gap-4 pt-2">
-              <a href="#why-entrepreneurship" class="px-5 py-3 bg-cbNavy hover:bg-cbTeal text-paperCream font-typewriter text-xs sm:text-sm font-bold rounded-lg border-2 border-cbNavy shadow-retro hover:translate-x-0.5 hover:translate-y-0.5 transition-all flex items-center gap-2">
-                <span>Read The Purpose</span>
-                <span>➔</span>
-              </a>
-              <a href="#enquiry-slip" class="px-5 py-3 bg-paperCard hover:bg-paperCream text-cbNavy font-typewriter text-xs sm:text-sm font-bold rounded-lg border-2 border-cbNavy shadow-retro hover:translate-x-0.5 hover:translate-y-0.5 transition-all">
-                Enquire for Next Cohort ✉
-              </a>
+              <a href="#why" class="btn-primary">Read The Purpose ➔</a>
+              <a href="#enquiry" class="btn-secondary">Enquire for Next Cohort ✉</a>
             </div>
-
           </div>
 
-          <!-- Right Column: Tactile Sticky Note with the Golden Measure of Success -->
-          <div class="lg:col-span-4 relative">
-            <div class="tape-rust w-28 h-5 absolute -top-3 right-8 z-20 rotate-3"></div>
-            
-            <div class="bg-[#FFF9CE] p-6 rounded-xl border-3 border-cbNavy shadow-retro-lg rotate-2 relative">
-              <span class="stamped-badge px-2.5 py-0.5 text-[11px] mb-3">
-                CRUCIAL MEASURE
-              </span>
-
-              <h2 class="font-hand font-bold text-2xl text-cbRust leading-snug mt-1">
+          <div class="relative lg:col-span-4">
+            <span class="tape-rust -top-3 right-8 z-20 h-5 w-28 rotate-3"></span>
+            <div class="relative rotate-2 rounded-xl border-[3px] border-navy bg-[#FFF9CE] p-6 shadow-retro-lg">
+              <span class="stamp mb-3 text-[11px]">CRUCIAL MEASURE</span>
+              <h2 class="mt-1 font-hand text-2xl font-bold leading-snug text-rust">
                 “A child who finishes with a half-formed lemonade stand idea and real confidence has succeeded.”
               </h2>
-
-              <p class="font-hand text-lg text-cbNavy/85 mt-2 leading-tight">
+              <p class="mt-2 font-hand text-lg leading-tight text-navy/85">
                 “A child who finishes with a polished business plan but no ownership of it has not.”
               </p>
-
-              <div class="mt-4 pt-3 border-t border-cbNavy/20 font-typewriter text-[11px] text-cbNavy/70 flex items-center justify-between">
-                <span>Curious Beast Yardstick</span>
-                <span class="text-base">🍋</span>
+              <div class="mt-4 flex items-center justify-between border-t border-navy/20 pt-3 font-type text-[11px] text-navy/70">
+                <span>Curious Beast Yardstick</span><span class="text-base">🍋</span>
               </div>
             </div>
-
-            <!-- Stamped seal -->
-            <div class="mt-4 text-center">
-              <div class="inline-block bg-paperCard px-3 py-1 rounded border border-cbNavy text-[11px] font-typewriter text-cbTeal font-bold">
-                🔒 100% Screen-Free • Analog First
-              </div>
-            </div>
+            <p class="mt-4 text-center">
+              <span class="inline-block rounded border border-navy bg-card px-3 py-1 font-type text-[11px] font-bold text-teal">🔒 100% Screen-Free • Analog First</span>
+            </p>
           </div>
-
         </div>
-
       </div>
-
     </section>
 
-    <section id="why-entrepreneurship" class="py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <div class="text-center max-w-3xl mx-auto mb-10">
-        <div class="tape-gold w-32 h-4 mx-auto mb-3"></div>
-        <span class="font-typewriter text-xs uppercase tracking-widest text-cbTeal font-bold">
-          [ SECTION 2 // PHILOSOPHICAL FOUNDATION ]
-        </span>
-        <h2 class="font-brand font-extrabold text-3xl sm:text-4xl text-cbNavy mt-1">
-          Why Teach Kids Entrepreneurship?
-        </h2>
-        <p class="font-serifDoc text-lg sm:text-xl text-cbNavy/85 mt-2 italic">
-          It is often mistaken for career preparation. That is not the aim here.
+    <!-- ===== 2. Why + Habits ===== -->
+    <section id="why" class="container-page section">
+      <header class="mx-auto mb-10 max-w-3xl text-center">
+        <span class="tape-gold relative mx-auto mb-3 block h-4 w-32"></span>
+        <p class="label tracking-widest text-teal">[ SECTION 2 // PHILOSOPHICAL FOUNDATION ]</p>
+        <h2 class="h-section mt-1">Why Teach Kids Entrepreneurship?</h2>
+        <p class="lede mt-2">It is often mistaken for career preparation. That is not the aim here.</p>
+      </header>
+
+      <div class="panel-card mb-10 space-y-4 text-base leading-relaxed sm:text-lg">
+        <span class="tape-teal -top-2 right-12 h-4 w-24"></span>
+        <p>
+          Teaching children entrepreneurship is often mistaken for career preparation, as if the goal were to produce future founders. <strong>That is not the aim here.</strong> Most children in this programme will not start a company by sixteen, and that is not how success is measured.
+        </p>
+        <p class="rounded-lg border-2 border-navy/40 bg-cream p-4 font-type text-sm sm:text-base">
+          <strong>The Core Tenet:</strong> Entrepreneurship is taught because the <em>habits behind it</em> are useful to any child, whatever they go on to do. It is a vehicle for personal agency, not an end in itself.
         </p>
       </div>
 
-      <!-- Main Explanation Card -->
-      <div class="bg-paperCard border-3 border-cbNavy rounded-2xl p-6 sm:p-8 shadow-retro-lg mb-10 relative">
-        <div class="tape-teal w-24 h-4 absolute -top-2 right-12"></div>
-        
-        <div class="prose max-w-none text-cbNavy leading-relaxed font-sans text-base sm:text-lg space-y-4">
-          <p>
-            Teaching children entrepreneurship is often mistaken for career preparation, as if the goal were to produce future founders. <strong>That is not the aim here.</strong> Most children in this programme will not start a company by sixteen, and that is not how success is measured.
-          </p>
-          <div class="p-4 bg-paperCream rounded-lg border-2 border-cbNavy/40 font-typewriter text-sm sm:text-base text-cbNavy">
-            <strong>The Core Tenet:</strong> Entrepreneurship is taught because the <em>habits behind it</em> are useful to any child, whatever they go on to do. It is a vehicle for personal agency, not an end in itself.
-          </div>
-        </div>
-      </div>
-
-      <div id="habits" class="mt-12">
-        
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-6 gap-2 border-b-2 border-cbNavy pb-3">
+      <div id="habits">
+        <div class="mb-6 flex flex-col justify-between gap-2 border-b-2 border-navy pb-3 sm:flex-row sm:items-center">
           <div>
-            <h3 class="font-brand font-bold text-2xl text-cbNavy">
-              The 5 Lifelong Habits We Build
-            </h3>
-            <p class="font-typewriter text-xs text-cbTeal font-bold">
-              Click any card to inspect how this habit is cultivated on the physical workshop floor
+            <h3 class="font-brand text-2xl font-bold">The 5 Lifelong Habits We Build</h3>
+            <p class="font-type text-xs font-bold text-teal">Click any card to see how this habit is built on the workshop floor</p>
+          </div>
+          <span class="tag self-start">5 Interactive Habit Cards</span>
+        </div>
+        <div id="habitGrid" class="grid gap-6 md:grid-cols-2 lg:grid-cols-3"></div>
+      </div>
+    </section>
+
+    <!-- ===== 3. Guiding Beliefs ===== -->
+    <section id="beliefs" class="section relative border-y-4 border-navy bg-paper-dark/40">
+      <div class="container-page">
+        <header class="mx-auto mb-10 max-w-3xl text-center">
+          <span class="tape-rust relative mx-auto mb-2 block h-4 w-28"></span>
+          <p class="label tracking-widest text-rust">[ SECTION 3 // PEDAGOGICAL CODE ]</p>
+          <h2 class="h-section mt-1">The 5 Guiding Beliefs</h2>
+          <p class="lede mt-1 !text-lg">The non-negotiable principles guiding every facilitator in our physical workshops.</p>
+        </header>
+
+        <div class="grid items-start gap-6 lg:grid-cols-12">
+          <div id="beliefTabs" class="space-y-2 lg:col-span-4" role="tablist" aria-label="Guiding beliefs">
+            <p class="mt-4 rounded border border-navy/30 bg-manila p-3 font-hand text-base text-rust" id="beliefQuote">
+              ✎ “Facilitators guide the process; they do not supply the answers.”
             </p>
           </div>
-          <span class="font-typewriter text-xs bg-cbGoldLight text-cbNavy px-2.5 py-1 rounded border border-cbNavy font-bold self-start">
-            5 Interactive Habit Cards
-          </span>
-        </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          
-          <!-- Habit 1 -->
-          <div class="habit-card bg-paperCard rounded-xl border-2 border-cbNavy shadow-retro p-5 cursor-pointer hover:-translate-y-1 transition-all relative flex flex-col justify-between" onclick="toggleHabitDetail(this)">
-            <div>
-              <div class="flex justify-between items-start mb-2">
-                <span class="font-typewriter text-xs font-bold text-cbRust uppercase bg-paperDark px-2 py-0.5 rounded border border-cbNavy/30">Habit 01</span>
-                <span class="text-2xl">👀</span>
-              </div>
-              <h4 class="font-brand font-bold text-lg text-cbNavy leading-snug">
-                Noticing a Problem to Act On
-              </h4>
-              <p class="font-sans text-sm text-cbNavy/80 mt-2">
-                Treating a problem as something to act on, not something that just happens to you.
-              </p>
-            </div>
-            
-            <div class="habit-expanded hidden mt-4 pt-3 border-t-2 border-dashed border-cbNavy/20 bg-paperCream p-3 rounded font-typewriter text-xs text-cbNavy">
-              <strong class="text-cbTeal block mb-1">In The Workshop:</strong>
-              Children complete tactile 'Bother Boards'—writing down small daily irritations (like tangled skipping ropes or soggy bookbags) and deciding how to intervene.
-            </div>
-
-            <div class="mt-3 text-right">
-              <span class="habit-toggle-text font-typewriter text-[11px] text-cbTeal font-bold underline">
-                + Expand Workshop Action
-              </span>
-            </div>
-          </div>
-
-          <!-- Habit 2 -->
-          <div class="habit-card bg-paperCard rounded-xl border-2 border-cbNavy shadow-retro p-5 cursor-pointer hover:-translate-y-1 transition-all relative flex flex-col justify-between" onclick="toggleHabitDetail(this)">
-            <div>
-              <div class="flex justify-between items-start mb-2">
-                <span class="font-typewriter text-xs font-bold text-cbTeal uppercase bg-paperDark px-2 py-0.5 rounded border border-cbNavy/30">Habit 02</span>
-                <span class="text-2xl">📐</span>
-              </div>
-              <h4 class="font-brand font-bold text-lg text-cbNavy leading-snug">
-                Turning Interest into Concrete Plans
-              </h4>
-              <p class="font-sans text-sm text-cbNavy/80 mt-2">
-                Turning a vague interest into a concrete plan, however small.
-              </p>
-            </div>
-
-            <div class="habit-expanded hidden mt-4 pt-3 border-t-2 border-dashed border-cbNavy/20 bg-paperCream p-3 rounded font-typewriter text-xs text-cbNavy">
-              <strong class="text-cbTeal block mb-1">Why It Matters Later:</strong>
-              The exact same skill shows up later in school science projects, personal goals, and creative careers. Dreams become blueprints on graph paper.
-            </div>
-
-            <div class="mt-3 text-right">
-              <span class="habit-toggle-text font-typewriter text-[11px] text-cbTeal font-bold underline">
-                + Expand Workshop Action
-              </span>
-            </div>
-          </div>
-
-          <!-- Habit 3 -->
-          <div class="habit-card bg-paperCard rounded-xl border-2 border-cbNavy shadow-retro p-5 cursor-pointer hover:-translate-y-1 transition-all relative flex flex-col justify-between" onclick="toggleHabitDetail(this)">
-            <div>
-              <div class="flex justify-between items-start mb-2">
-                <span class="font-typewriter text-xs font-bold text-cbGold uppercase bg-paperDark px-2 py-0.5 rounded border border-cbNavy/30">Habit 03</span>
-                <span class="text-2xl">⚖️</span>
-              </div>
-              <h4 class="font-brand font-bold text-lg text-cbNavy leading-snug">
-                Living with Real Constraints
-              </h4>
-              <p class="font-sans text-sm text-cbNavy/80 mt-2">
-                Making choices under limited coins, time, or materials, and living with trade-offs instead of being shielded.
-              </p>
-            </div>
-
-            <div class="habit-expanded hidden mt-4 pt-3 border-t-2 border-dashed border-cbNavy/20 bg-paperCream p-3 rounded font-typewriter text-xs text-cbNavy">
-              <strong class="text-cbTeal block mb-1">In The Workshop:</strong>
-              Every child receives exactly 10 heavy metal play coins. If they spend 6 on ribbon, they cannot afford cardboard. They experience real trade-offs safely.
-            </div>
-
-            <div class="mt-3 text-right">
-              <span class="habit-toggle-text font-typewriter text-[11px] text-cbTeal font-bold underline">
-                + Expand Workshop Action
-              </span>
-            </div>
-          </div>
-
-          <!-- Habit 4 -->
-          <div class="habit-card bg-paperCard rounded-xl border-2 border-cbNavy shadow-retro p-5 cursor-pointer hover:-translate-y-1 transition-all relative flex flex-col justify-between" onclick="toggleHabitDetail(this)">
-            <div>
-              <div class="flex justify-between items-start mb-2">
-                <span class="font-typewriter text-xs font-bold text-cbSage uppercase bg-paperDark px-2 py-0.5 rounded border border-cbNavy/30">Habit 04</span>
-                <span class="text-2xl">🗣️</span>
-              </div>
-              <h4 class="font-brand font-bold text-lg text-cbNavy leading-snug">
-                Speaking an Idea Out Loud
-              </h4>
-              <p class="font-sans text-sm text-cbNavy/80 mt-2">
-                Speaking an idea out loud and hearing what other people think of it. Most schooling never asks a child to do this.
-              </p>
-            </div>
-
-            <div class="habit-expanded hidden mt-4 pt-3 border-t-2 border-dashed border-cbNavy/20 bg-paperCream p-3 rounded font-typewriter text-xs text-cbNavy">
-              <strong class="text-cbTeal block mb-1">In The Workshop:</strong>
-              The 'Soapbox Circle'—no PowerPoint or projector screens. Children stand holding their cardboard prototype and present in 90 seconds to peers.
-            </div>
-
-            <div class="mt-3 text-right">
-              <span class="habit-toggle-text font-typewriter text-[11px] text-cbTeal font-bold underline">
-                + Expand Workshop Action
-              </span>
-            </div>
-          </div>
-
-          <!-- Habit 5 -->
-          <div class="habit-card bg-paperCard rounded-xl border-2 border-cbNavy shadow-retro p-5 cursor-pointer hover:-translate-y-1 transition-all relative flex flex-col justify-between md:col-span-2 lg:col-span-2" onclick="toggleHabitDetail(this)">
-            <div>
-              <div class="flex justify-between items-start mb-2">
-                <span class="font-typewriter text-xs font-bold text-cbRust uppercase bg-paperDark px-2 py-0.5 rounded border border-cbNavy/30">Habit 05</span>
-                <span class="text-2xl">🪙</span>
-              </div>
-              <h4 class="font-brand font-bold text-lg text-cbNavy leading-snug">
-                Understanding Money as a Tool with Trade-Offs
-              </h4>
-              <p class="font-sans text-sm text-cbNavy/80 mt-2">
-                Understanding money early as a practical tool with clear trade-offs, rather than a taboo subject or a source of anxiety.
-              </p>
-            </div>
-
-            <div class="habit-expanded hidden mt-4 pt-3 border-t-2 border-dashed border-cbNavy/20 bg-paperCream p-3 rounded font-typewriter text-xs text-cbNavy">
-              <strong class="text-cbTeal block mb-1">In The Workshop:</strong>
-              Money is demystified into three physical jars: <em>Spend, Save, and Give</em>. Children see money as fuel that directs attention and builds character.
-            </div>
-
-            <div class="mt-3 text-right">
-              <span class="habit-toggle-text font-typewriter text-[11px] text-cbTeal font-bold underline">
-                + Expand Workshop Action
-              </span>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-    <section id="guiding-beliefs" class="py-14 bg-paperDark/40 border-y-4 border-cbNavy relative">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        <div class="text-center max-w-3xl mx-auto mb-10">
-          <div class="tape-rust w-28 h-4 mx-auto mb-2"></div>
-          <span class="font-typewriter text-xs uppercase tracking-widest text-cbRust font-bold">
-            [ SECTION 3 // PEDAGOGICAL CODE ]
-          </span>
-          <h2 class="font-brand font-extrabold text-3xl sm:text-4xl text-cbNavy mt-1">
-            The 5 Guiding Beliefs
-          </h2>
-          <p class="font-serifDoc text-lg text-cbNavy/85 mt-1 italic">
-            The non-negotiable principles guiding every facilitator in our physical workshops.
-          </p>
-        </div>
-
-        <!-- Scrapbook Binder Tabs -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-          
-          <!-- Left: Tab Navigation (Styled like 80s indexed binder tabs) -->
-          <div class="lg:col-span-4 space-y-2">
-            
-            <button type="button" onclick="selectBelief(1)" id="tab-belief-1" class="belief-tab-btn w-full text-left p-3.5 rounded-lg border-2 border-cbNavy bg-cbNavy text-paperCream font-typewriter text-xs sm:text-sm font-bold shadow-retro-sm transition-all flex items-center justify-between">
-              <span>3.1 Start from the child, not the subject</span>
-              <span>➔</span>
-            </button>
-
-            <button type="button" onclick="selectBelief(2)" id="tab-belief-2" class="belief-tab-btn w-full text-left p-3.5 rounded-lg border-2 border-cbNavy bg-paperCard text-cbNavy font-typewriter text-xs sm:text-sm font-bold shadow-retro-sm hover:bg-paperCream transition-all flex items-center justify-between">
-              <span>3.2 Character comes before scale</span>
-              <span>➔</span>
-            </button>
-
-            <button type="button" onclick="selectBelief(3)" id="tab-belief-3" class="belief-tab-btn w-full text-left p-3.5 rounded-lg border-2 border-cbNavy bg-paperCard text-cbNavy font-typewriter text-xs sm:text-sm font-bold shadow-retro-sm hover:bg-paperCream transition-all flex items-center justify-between">
-              <span>3.3 Wants are not the enemy</span>
-              <span>➔</span>
-            </button>
-
-            <button type="button" onclick="selectBelief(4)" id="tab-belief-4" class="belief-tab-btn w-full text-left p-3.5 rounded-lg border-2 border-cbNavy bg-paperCard text-cbNavy font-typewriter text-xs sm:text-sm font-bold shadow-retro-sm hover:bg-paperCream transition-all flex items-center justify-between">
-              <span>3.4 Ownership over correctness</span>
-              <span>➔</span>
-            </button>
-
-            <button type="button" onclick="selectBelief(5)" id="tab-belief-5" class="belief-tab-btn w-full text-left p-3.5 rounded-lg border-2 border-cbNavy bg-paperCard text-cbNavy font-typewriter text-xs sm:text-sm font-bold shadow-retro-sm hover:bg-paperCream transition-all flex items-center justify-between">
-              <span>3.5 Hands-on over written</span>
-              <span>➔</span>
-            </button>
-
-            <div class="mt-4 p-3 bg-paperManila rounded border border-cbNavy/30 font-hand text-base text-cbRust">
-              ✎ “Facilitators guide the process; they do not supply the answers.”
-            </div>
-
-          </div>
-
-          <!-- Right: Detailed Belief Binder Page -->
           <div class="lg:col-span-8">
-            
-            <div class="bg-paperCard border-3 border-cbNavy rounded-2xl p-6 sm:p-8 shadow-retro-lg lined-notebook relative min-h-[380px]">
-              <div class="tape-gold w-32 h-5 absolute -top-2.5 right-10"></div>
-              
-              <!-- Belief Content 1 -->
-              <div id="belief-content-1" class="belief-content-panel space-y-4">
-                <div class="flex items-center justify-between border-b border-cbNavy/30 pb-2">
-                  <span class="font-typewriter text-xs text-cbRust font-bold uppercase tracking-wider">
-                    GUIDING BELIEF 3.1
-                  </span>
-                  <span class="text-xl">🎨</span>
-                </div>
-                <h3 class="font-brand font-bold text-2xl sm:text-3xl text-cbNavy">
-                  Start from the child, not the subject
-                </h3>
-                <p class="font-serifDoc text-lg sm:text-xl text-cbNavy leading-relaxed italic">
-                  “Business concepts are introduced only after they are anchored in something the child already feels: a hobby, a person they care about, something that bothers them.”
-                </p>
-                <div class="bg-paperCream p-4 rounded-lg border border-cbNavy/40 font-sans text-sm text-cbNavy leading-relaxed">
-                  <strong class="font-typewriter text-xs text-cbTeal block uppercase mb-1">How This is Structured:</strong>
-                  This is why the programme opens with self and interest, through the <strong>Vision Wheel</strong> and the <strong>future-self drawing</strong>, before it opens with money or ideas. We never ask a child to build a business around an abstraction; we ask them what they love making on Saturday morning.
-                </div>
-              </div>
-
-              <!-- Belief Content 2 -->
-              <div id="belief-content-2" class="belief-content-panel hidden space-y-4">
-                <div class="flex items-center justify-between border-b border-cbNavy/30 pb-2">
-                  <span class="font-typewriter text-xs text-cbTeal font-bold uppercase tracking-wider">
-                    GUIDING BELIEF 3.2
-                  </span>
-                  <span class="text-xl">🪙</span>
-                </div>
-                <h3 class="font-brand font-bold text-2xl sm:text-3xl text-cbNavy">
-                  Character comes before scale
-                </h3>
-                <p class="font-serifDoc text-lg sm:text-xl text-cbNavy leading-relaxed italic">
-                  “Money does not create character in a child. It reveals and amplifies whatever is already there.”
-                </p>
-                <div class="bg-paperCream p-4 rounded-lg border border-cbNavy/40 font-sans text-sm text-cbNavy leading-relaxed">
-                  <strong class="font-typewriter text-xs text-cbTeal block uppercase mb-1">Gentle Early Realisation:</strong>
-                  A child generous with ten coins will likely be generous with a hundred; a child anxious with ten will likely stay anxious with a hundred. The programme's money activities surface this early and gently, while the stakes are still play money, so children notice their own instincts before the stakes are real.
-                </div>
-              </div>
-
-              <!-- Belief Content 3 -->
-              <div id="belief-content-3" class="belief-content-panel hidden space-y-4">
-                <div class="flex items-center justify-between border-b border-cbNavy/30 pb-2">
-                  <span class="font-typewriter text-xs text-cbGold font-bold uppercase tracking-wider">
-                    GUIDING BELIEF 3.3
-                  </span>
-                  <span class="text-xl">🍰</span>
-                </div>
-                <h3 class="font-brand font-bold text-2xl sm:text-3xl text-cbNavy">
-                  Wants are not the enemy
-                </h3>
-                <p class="font-serifDoc text-lg sm:text-xl text-cbNavy leading-relaxed italic">
-                  “The programme teaches the difference between wants and needs, but avoids making wants feel shameful.”
-                </p>
-                <div class="bg-paperCream p-4 rounded-lg border border-cbNavy/40 font-sans text-sm text-cbNavy leading-relaxed">
-                  <strong class="font-typewriter text-xs text-cbTeal block uppercase mb-1">Healthy Awareness Without Guilt:</strong>
-                  Business exists to serve wants as much as needs, and an idea that helps someone get something they want is a legitimate idea. The goal is awareness of the distinction, not guilt about desire.
-                </div>
-              </div>
-
-              <!-- Belief Content 4 -->
-              <div id="belief-content-4" class="belief-content-panel hidden space-y-4">
-                <div class="flex items-center justify-between border-b border-cbNavy/30 pb-2">
-                  <span class="font-typewriter text-xs text-cbSage font-bold uppercase tracking-wider">
-                    GUIDING BELIEF 3.4
-                  </span>
-                  <span class="text-xl">🧭</span>
-                </div>
-                <h3 class="font-brand font-bold text-2xl sm:text-3xl text-cbNavy">
-                  Ownership over correctness
-                </h3>
-                <p class="font-serifDoc text-lg sm:text-xl text-cbNavy leading-relaxed italic">
-                  “Wherever a child is asked to choose—whether a category, a coin placement, an idea, or a shop name—the choice is theirs, and there is no wrong answer.”
-                </p>
-                <div class="bg-paperCream p-4 rounded-lg border border-cbNavy/40 font-sans text-sm text-cbNavy leading-relaxed">
-                  <strong class="font-typewriter text-xs text-cbTeal block uppercase mb-1">Self-Generated Agency:</strong>
-                  Facilitators guide the process; they do not supply answers. A confident, self-generated idea is worth more at this age than a technically sound one handed down by an adult.
-                </div>
-              </div>
-
-              <!-- Belief Content 5 -->
-              <div id="belief-content-5" class="belief-content-panel hidden space-y-4">
-                <div class="flex items-center justify-between border-b border-cbNavy/30 pb-2">
-                  <span class="font-typewriter text-xs text-cbRust font-bold uppercase tracking-wider">
-                    GUIDING BELIEF 3.5
-                  </span>
-                  <span class="text-xl">✂️</span>
-                </div>
-                <h3 class="font-brand font-bold text-2xl sm:text-3xl text-cbNavy">
-                  Hands-on over written
-                </h3>
-                <p class="font-serifDoc text-lg sm:text-xl text-cbNavy leading-relaxed italic">
-                  “Every concept in the programme has a physical or visual form: cards to sort, coins to place, pictures to draw.”
-                </p>
-                <div class="bg-paperCream p-4 rounded-lg border border-cbNavy/40 font-sans text-sm text-cbNavy leading-relaxed">
-                  <strong class="font-typewriter text-xs text-cbTeal block uppercase mb-1">Reasoning by Doing:</strong>
-                  Primary-age children reason more reliably through doing than through worksheets or lecture. We keep the desks messy with wood scraps, markers, cardboard, and coins.
-                </div>
-              </div>
-
+            <div id="beliefPanel" role="tabpanel" class="panel-card lined-notebook min-h-[380px] space-y-4 sm:p-8">
+              <span class="tape-gold -top-2.5 right-10 h-5 w-32"></span>
+              <div id="beliefBody" class="space-y-4"></div>
             </div>
-
           </div>
-
         </div>
-
       </div>
     </section>
 
-    <section id="discovery-session" class="py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <div class="bg-paperCard border-3 border-cbNavy rounded-2xl p-6 sm:p-10 shadow-retro-lg ledger-grid relative">
-        <div class="tape-teal w-28 h-5 absolute -top-3 left-10"></div>
-        <div class="tape-gold w-24 h-4 absolute -bottom-2 right-12 rotate-2"></div>
+    <!-- ===== 4. Discovery Session ===== -->
+    <section id="discovery" class="container-page section">
+      <div class="panel-card ledger-grid sm:p-10">
+        <span class="tape-teal -top-3 left-10 h-5 w-28"></span>
+        <span class="tape-gold -bottom-2 right-12 h-4 w-24 rotate-2"></span>
 
         <div class="max-w-3xl">
-          <span class="stamped-badge px-2.5 py-0.5 text-xs mb-2">
-            GATEWAY MODULE // 01
-          </span>
-          <h2 class="font-brand font-extrabold text-3xl sm:text-4xl text-cbNavy mt-2">
-            The Discovery Session
-          </h2>
-          <p class="font-serifDoc text-lg text-cbNavy/85 italic mt-1">
-            “The Discovery Session paper covers the first module in detail. It anchors everything that follows.”
-          </p>
+          <span class="stamp mb-2">GATEWAY MODULE // 01</span>
+          <h2 class="h-section mt-2">The Discovery Session</h2>
+          <p class="lede mt-1 !text-lg">“The Discovery Session paper covers the first module in detail. It anchors everything that follows.”</p>
         </div>
 
-        <!-- 4 Step Physical Timeline -->
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-8 font-typewriter">
-          
-          <div class="bg-paperCream p-4 rounded-lg border-2 border-cbNavy shadow-retro-sm">
-            <span class="text-xs text-cbRust font-bold block mb-1">STEP 01</span>
-            <div class="text-xl mb-1">🎡</div>
-            <strong class="font-brand text-base text-cbNavy block">The Vision Wheel</strong>
-            <p class="text-xs text-cbNavy/75 mt-1">
-              Mapping out passions, sports, craft hobbies, and community relationships.
-            </p>
-          </div>
+        <div id="stepGrid" class="mt-8 grid gap-4 font-type md:grid-cols-4"></div>
 
-          <div class="bg-paperCream p-4 rounded-lg border-2 border-cbNavy shadow-retro-sm">
-            <span class="text-xs text-cbTeal font-bold block mb-1">STEP 02</span>
-            <div class="text-xl mb-1">🪞</div>
-            <strong class="font-brand text-base text-cbNavy block">Future-Self Drawing</strong>
-            <p class="text-xs text-cbNavy/75 mt-1">
-              Drawing what their hands want to create, before mentioning coins or business plans.
-            </p>
-          </div>
-
-          <div class="bg-paperCream p-4 rounded-lg border-2 border-cbNavy shadow-retro-sm">
-            <span class="text-xs text-cbGold font-bold block mb-1">STEP 03</span>
-            <div class="text-xl mb-1">🪙</div>
-            <strong class="font-brand text-base text-cbNavy block">The Coin Allocation</strong>
-            <p class="text-xs text-cbNavy/75 mt-1">
-              Allocating 10 play coins into wants, needs, tools, and gifts to surface personal instincts.
-            </p>
-          </div>
-
-          <div class="bg-paperCream p-4 rounded-lg border-2 border-cbNavy shadow-retro-sm">
-            <span class="text-xs text-cbSage font-bold block mb-1">STEP 04</span>
-            <div class="text-xl mb-1">📣</div>
-            <strong class="font-brand text-base text-cbNavy block">The 90-Sec Spark Pitch</strong>
-            <p class="text-xs text-cbNavy/75 mt-1">
-              Saying the idea out loud to peers. Taking ownership with full confidence.
-            </p>
-          </div>
-
-        </div>
-
-        <div class="mt-8 pt-4 border-t-2 border-dashed border-cbNavy/30 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p class="font-hand text-xl text-cbRust font-bold">
-            No devices permitted. All sketches and ledgers stay in the physical scrapbook.
-          </p>
-          <a href="#enquiry-slip" class="px-5 py-2.5 bg-cbTeal text-paperCream font-typewriter text-xs font-bold rounded border border-cbNavy shadow-retro-sm hover:bg-cbNavy transition-colors whitespace-nowrap">
+        <div class="mt-8 flex flex-col items-center justify-between gap-4 border-t-2 border-dashed border-navy/30 pt-4 sm:flex-row">
+          <p class="font-hand text-xl font-bold text-rust">No devices permitted. All sketches and ledgers stay in the physical scrapbook.</p>
+          <a href="#enquiry" class="whitespace-nowrap rounded border border-navy bg-teal px-5 py-2.5 font-type text-xs font-bold text-cream shadow-retro-sm transition-colors hover:bg-navy">
             Inquire About Next Discovery Cohort ➔
           </a>
         </div>
-
       </div>
-
     </section>
 
-    <section id="enquiry-slip" class="py-14 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <div class="bg-paperManila border-3 border-cbNavy rounded-2xl p-6 sm:p-10 shadow-retro-lg relative">
-        <div class="tape-rust w-32 h-5 absolute -top-2.5 right-14"></div>
+    <!-- ===== 5. Enquiry form ===== -->
+    <section id="enquiry" class="mx-auto max-w-4xl px-4 py-14 sm:px-6 lg:px-8">
+      <div class="panel-manila sm:p-10">
+        <span class="tape-rust -top-2.5 right-14 h-5 w-32"></span>
 
-        <div class="text-center max-w-xl mx-auto mb-8">
-          <span class="font-typewriter text-xs uppercase tracking-widest text-cbNavy font-bold">
-            [ OFFICIAL DOCKET: YEP-ADM-FORM ]
-          </span>
-          <h2 class="font-brand font-extrabold text-3xl sm:text-4xl text-cbNavy mt-1">
-            Programme Enrolment &amp; Facilitator Slip
-          </h2>
-          <p class="font-sans text-sm text-cbNavy/80 mt-1">
-            Whether you are a parent considering enrolment or an educator interested in facilitating, please file this official docket.
-          </p>
-        </div>
+        <header class="mx-auto mb-8 max-w-xl text-center">
+          <p class="label tracking-widest">[ OFFICIAL DOCKET: YEP-ADM-FORM ]</p>
+          <h2 class="h-section mt-1">Programme Enrolment &amp; Facilitator Slip</h2>
+          <p class="mt-1 text-sm text-navy/80">Whether you are a parent considering enrolment or an educator interested in facilitating, please file this official docket.</p>
+        </header>
 
-        <!-- The Paper Slip Form -->
-        <div class="bg-paperCream p-6 sm:p-8 rounded-xl border-2 border-cbNavy shadow-sm relative">
-          
-          <form id="enrolmentForm" onsubmit="handleFormSubmission(event)" class="space-y-5">
-            
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <!-- Name -->
+        <div class="rounded-xl border-2 border-navy bg-cream p-6 shadow-sm sm:p-8">
+          <form id="enrolmentForm" class="space-y-5">
+            <div class="grid gap-4 sm:grid-cols-2">
               <div>
-                <label for="applicantName" class="block font-typewriter text-xs font-bold uppercase text-cbNavy mb-1">
-                  1. Your Full Name <span class="text-cbRust">*</span>
-                </label>
-                <input 
-                  type="text" 
-                  id="applicantName" 
-                  required 
-                  placeholder="e.g. Dr. Eleanor Vance" 
-                  class="w-full bg-white border-2 border-cbNavy rounded px-3 py-2 text-cbNavy font-typewriter text-sm focus:outline-none focus:ring-2 focus:ring-cbCoral"
-                >
+                <label for="applicantName" class="label mb-1 block">1. Your Full Name <span class="text-rust">*</span></label>
+                <input id="applicantName" required placeholder="e.g. Dr. Eleanor Vance" class="field">
               </div>
-
-              <!-- Role Selection -->
               <div>
-                <label for="applicantRole" class="block font-typewriter text-xs font-bold uppercase text-cbNavy mb-1">
-                  2. I am filing this as a: <span class="text-cbRust">*</span>
-                </label>
-                <select 
-                  id="applicantRole" 
-                  required 
-                  class="w-full bg-white border-2 border-cbNavy rounded px-3 py-2 text-cbNavy font-typewriter text-sm focus:outline-none focus:ring-2 focus:ring-cbCoral"
-                >
+                <label for="applicantRole" class="label mb-1 block">2. I am filing this as a: <span class="text-rust">*</span></label>
+                <select id="applicantRole" required class="field">
                   <option value="" disabled selected>-- Select One --</option>
-                  <option value="parent">Parent / Guardian (Considering Enrolment)</option>
-                  <option value="facilitator">Facilitator / Educator (Running Sessions)</option>
-                  <option value="partner">School Partner / Community Host</option>
+                  <option>Parent / Guardian (Considering Enrolment)</option>
+                  <option>Facilitator / Educator (Running Sessions)</option>
+                  <option>School Partner / Community Host</option>
                 </select>
               </div>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <!-- Email / Contact -->
+            <div class="grid gap-4 sm:grid-cols-2">
               <div>
-                <label for="contactInfo" class="block font-typewriter text-xs font-bold uppercase text-cbNavy mb-1">
-                  3. Contact Email / Phone <span class="text-cbRust">*</span>
-                </label>
-                <input 
-                  type="text" 
-                  id="contactInfo" 
-                  required 
-                  placeholder="e.g. eleanor@vance.org" 
-                  class="w-full bg-white border-2 border-cbNavy rounded px-3 py-2 text-cbNavy font-typewriter text-sm focus:outline-none focus:ring-2 focus:ring-cbCoral"
-                >
+                <label for="contactInfo" class="label mb-1 block">3. Contact Email / Phone <span class="text-rust">*</span></label>
+                <input id="contactInfo" required placeholder="e.g. eleanor@vance.org" class="field">
               </div>
-
-              <!-- Child Details -->
               <div>
-                <label for="childInfo" class="block font-typewriter text-xs font-bold uppercase text-cbNavy mb-1">
-                  4. Child's Name &amp; Age (If Enrolling)
-                </label>
-                <input 
-                  type="text" 
-                  id="childInfo" 
-                  placeholder="e.g. Maya (Age 9)" 
-                  class="w-full bg-white border-2 border-cbNavy rounded px-3 py-2 text-cbNavy font-typewriter text-sm focus:outline-none focus:ring-2 focus:ring-cbCoral"
-                >
+                <label for="childInfo" class="label mb-1 block">4. Child's Name &amp; Age (If Enrolling)</label>
+                <input id="childInfo" placeholder="e.g. Maya (Age 9)" class="field">
               </div>
             </div>
 
-            <!-- Notes -->
             <div>
-              <label for="message" class="block font-typewriter text-xs font-bold uppercase text-cbNavy mb-1">
-                5. What sparked your interest in our screen-free approach?
-              </label>
-              <textarea 
-                id="message" 
-                rows="3" 
-                placeholder="Tell us what habits or hobbies you'd like to cultivate in your child..."
-                class="w-full bg-white border-2 border-cbNavy rounded px-3 py-2 text-cbNavy font-typewriter text-sm focus:outline-none focus:ring-2 focus:ring-cbCoral"
-              ></textarea>
+              <label for="message" class="label mb-1 block">5. What sparked your interest in our screen-free approach?</label>
+              <textarea id="message" rows="3" placeholder="Tell us what habits or hobbies you'd like to cultivate in your child..." class="field"></textarea>
             </div>
 
-            <!-- Preamble agreement check -->
-            <div class="bg-cbGoldLight/30 p-3 rounded border border-cbNavy/30 flex items-start gap-2.5">
-              <input type="checkbox" id="pledgeCheck" required class="mt-1 text-cbRust focus:ring-cbCoral rounded">
-              <label for="pledgeCheck" class="font-sans text-xs text-cbNavy leading-relaxed">
+            <div class="flex items-start gap-2.5 rounded border border-navy/30 bg-gold-light/30 p-3">
+              <input type="checkbox" id="pledgeCheck" required class="mt-1 rounded text-rust focus:ring-coral">
+              <label for="pledgeCheck" class="text-xs leading-relaxed">
                 I understand this programme builds <strong>habits and ownership</strong> (not future CEOs), and that children work in a completely screen-free physical workshop environment.
               </label>
             </div>
 
-            <!-- Submit -->
-            <div class="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4">
-              <button 
-                type="submit" 
-                class="w-full sm:w-auto px-7 py-3 bg-cbRust hover:bg-cbCoral text-paperCream font-brand font-bold text-base rounded-lg border-2 border-cbNavy shadow-retro hover:translate-x-0.5 hover:translate-y-0.5 transition-all flex items-center justify-center gap-2"
-              >
-                <span>Dispatch Enrolment Docket</span>
-                <span>📮</span>
-              </button>
-              <span class="font-typewriter text-[11px] text-cbNavy/70">
-                Filed directly to the Workshop Registry
-              </span>
+            <div class="flex flex-col items-center justify-between gap-4 pt-2 sm:flex-row">
+              <button type="submit" class="btn-accent w-full text-base sm:w-auto">Dispatch Enrolment Docket 📮</button>
+              <span class="font-type text-[11px] text-navy/70">Filed directly to the Workshop Registry</span>
             </div>
-
           </form>
 
-          <!-- Success Confirmation Overlay -->
-          <div id="confirmationBox" class="hidden p-6 text-center space-y-4">
-            <div class="inline-block p-4 border-4 border-dashed border-cbRust rounded-lg -rotate-2 bg-white shadow-retro">
-              <span class="font-typewriter text-2xl font-black text-cbRust tracking-widest uppercase block">
-                ★ DOCKET RECEIVED &amp; FILED ★
-              </span>
-              <span class="font-typewriter text-xs text-cbNavy block mt-1">
-                CURIOUS BEAST ACADEMY // ADMISSIONS ARCHIVE
-              </span>
+          <div id="confirmation" class="hidden space-y-4 p-6 text-center" role="status">
+            <div class="inline-block -rotate-2 rounded-lg border-4 border-dashed border-rust bg-white p-4 shadow-retro">
+              <span class="block font-type text-2xl font-black uppercase tracking-widest text-rust">★ DOCKET RECEIVED &amp; FILED ★</span>
+              <span class="mt-1 block font-type text-xs">CURIOUS BEAST ACADEMY // ADMISSIONS ARCHIVE</span>
             </div>
-
-            <h3 class="font-brand font-bold text-2xl text-cbNavy">
-              Thank You for Honouring the Analog Spirit!
-            </h3>
-            
-            <p id="confirmationDetails" class="font-sans text-sm text-cbNavy max-w-md mx-auto leading-relaxed">
-              Your inquiry has been logged. Our facilitator desk will follow up with our complete Discovery Session materials and workshop calendar.
-            </p>
-
-            <button 
-              type="button" 
-              onclick="resetEnrolmentForm()" 
-              class="px-4 py-2 font-typewriter text-xs font-bold bg-cbNavy text-paperCream rounded border border-cbNavy hover:bg-cbTeal transition-colors"
-            >
+            <h3 class="font-brand text-2xl font-bold">Thank You for Honouring the Analog Spirit!</h3>
+            <p id="confirmationText" class="mx-auto max-w-md text-sm leading-relaxed"></p>
+            <button id="resetBtn" type="button" class="rounded border border-navy bg-navy px-4 py-2 font-type text-xs font-bold text-cream transition-colors hover:bg-teal">
               ↩ File Another Docket
             </button>
           </div>
-
         </div>
-
       </div>
-
     </section>
-
   </main>
 
-  <footer class="bg-paperManila border-t-4 border-cbNavy py-8 px-4 sm:px-6 lg:px-8 text-cbNavy font-typewriter">
-    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-      
-      <!-- Brand & Mascot in Footer -->
+  <!-- ===== Footer ===== -->
+  <footer class="border-t-4 border-navy bg-manila px-4 py-8 font-type sm:px-6 lg:px-8">
+    <div class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 md:flex-row">
       <div class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-lg bg-paperCream border-2 border-cbNavy p-0.5 shadow-retro-sm overflow-hidden flex-shrink-0">
-          <img 
-            src="attachment:Screenshot 2026-10-01 at 17.24.31.jpg" 
-            alt="Curious Beast Logo" 
-            class="w-full h-full object-contain"
-          >
-        </div>
+        <div class="flex h-10 w-10 items-center justify-center rounded-lg border-2 border-navy bg-cream text-xl shadow-retro-sm">🦖</div>
         <div>
-          <span class="font-brand font-bold text-base text-cbNavy block leading-none">Curious Beast Academy</span>
-          <span class="text-xs text-cbTeal font-bold">Young Entrepreneurs Programme • 100% Screen-Free Zone</span>
+          <span class="block font-brand text-base font-bold leading-none">Curious Beast Academy</span>
+          <span class="text-xs font-bold text-teal">Young Entrepreneurs Programme • 100% Screen-Free Zone</span>
         </div>
       </div>
-
-      <!-- Footer Note -->
-      <div class="text-xs text-center md:text-right text-cbNavy/80">
+      <div class="text-center text-xs text-navy/80 md:text-right">
         <p>Curiosity over conformity. Hands-on over worksheets. Ownership over correctness.</p>
-        <p class="mt-0.5 text-[11px] text-cbRust">Crafted with paper, ink, and play coins.</p>
+        <p class="mt-0.5 text-[11px] text-rust">Crafted with paper, ink, and play coins.</p>
       </div>
-
     </div>
   </footer>
 
+  <!-- ============================================================
+       3. CONTENT DATA  (edit text here, not in the markup)
+       ============================================================ -->
   <script>
-    // Mobile navigation toggle
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const menuIcon = document.getElementById('menuIcon');
-    const closeIcon = document.getElementById('closeIcon');
-    const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+    const NAV = [
+      { href: '#why',       label: '01. Why Kids?',        long: '01. Why Teach Kids Entrepreneurship' },
+      { href: '#habits',    label: '02. The 5 Habits',     long: '02. The 5 Core Habits' },
+      { href: '#beliefs',   label: '03. Guiding Beliefs',  long: '03. The 5 Guiding Beliefs' },
+      { href: '#discovery', label: '04. Discovery Session', long: '04. Module 1: The Discovery Session' },
+    ];
 
-    if (mobileMenuBtn) {
-      mobileMenuBtn.addEventListener('click', function() {
-        const isExpanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
-        mobileMenuBtn.setAttribute('aria-expanded', !isExpanded);
-        mobileMenu.classList.toggle('hidden');
-        menuIcon.classList.toggle('hidden');
-        closeIcon.classList.toggle('hidden');
-      });
-    }
+    const HABITS = [
+      { emoji: '👀', color: 'text-rust', title: 'Noticing a Problem to Act On',
+        summary: 'Treating a problem as something to act on, not something that just happens to you.',
+        heading: 'In The Workshop:',
+        detail: "Children complete tactile 'Bother Boards'—writing down small daily irritations (like tangled skipping ropes or soggy bookbags) and deciding how to intervene." },
+      { emoji: '📐', color: 'text-teal', title: 'Turning Interest into Concrete Plans',
+        summary: 'Turning a vague interest into a concrete plan, however small.',
+        heading: 'Why It Matters Later:',
+        detail: 'The exact same skill shows up later in school science projects, personal goals, and creative careers. Dreams become blueprints on graph paper.' },
+      { emoji: '⚖️', color: 'text-gold', title: 'Living with Real Constraints',
+        summary: 'Making choices under limited coins, time, or materials, and living with trade-offs instead of being shielded.',
+        heading: 'In The Workshop:',
+        detail: 'Every child receives exactly 10 heavy metal play coins. If they spend 6 on ribbon, they cannot afford cardboard. They experience real trade-offs safely.' },
+      { emoji: '🗣️', color: 'text-sage', title: 'Speaking an Idea Out Loud',
+        summary: 'Speaking an idea out loud and hearing what other people think of it. Most schooling never asks a child to do this.',
+        heading: 'In The Workshop:',
+        detail: "The 'Soapbox Circle'—no PowerPoint or projector screens. Children stand holding their cardboard prototype and present in 90 seconds to peers." },
+      { emoji: '🪙', color: 'text-rust', title: 'Understanding Money as a Tool with Trade-Offs', wide: true,
+        summary: 'Understanding money early as a practical tool with clear trade-offs, rather than a taboo subject or a source of anxiety.',
+        heading: 'In The Workshop:',
+        detail: 'Money is demystified into three physical jars: <em>Spend, Save, and Give</em>. Children see money as fuel that directs attention and builds character.' },
+    ];
 
-    mobileLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        mobileMenu.classList.add('hidden');
-        menuIcon.classList.remove('hidden');
-        closeIcon.classList.add('hidden');
-        mobileMenuBtn.setAttribute('aria-expanded', 'false');
-      });
-    });
+    const BELIEFS = [
+      { id: '3.1', emoji: '🎨', color: 'text-rust', title: 'Start from the child, not the subject',
+        quote: 'Business concepts are introduced only after they are anchored in something the child already feels: a hobby, a person they care about, something that bothers them.',
+        heading: 'How This is Structured:',
+        body: 'This is why the programme opens with self and interest, through the <strong>Vision Wheel</strong> and the <strong>future-self drawing</strong>, before it opens with money or ideas. We never ask a child to build a business around an abstraction; we ask them what they love making on Saturday morning.' },
+      { id: '3.2', emoji: '🪙', color: 'text-teal', title: 'Character comes before scale',
+        quote: 'Money does not create character in a child. It reveals and amplifies whatever is already there.',
+        heading: 'Gentle Early Realisation:',
+        body: "A child generous with ten coins will likely be generous with a hundred; a child anxious with ten will likely stay anxious with a hundred. The programme's money activities surface this early and gently, while the stakes are still play money, so children notice their own instincts before the stakes are real." },
+      { id: '3.3', emoji: '🍰', color: 'text-gold', title: 'Wants are not the enemy',
+        quote: 'The programme teaches the difference between wants and needs, but avoids making wants feel shameful.',
+        heading: 'Healthy Awareness Without Guilt:',
+        body: 'Business exists to serve wants as much as needs, and an idea that helps someone get something they want is a legitimate idea. The goal is awareness of the distinction, not guilt about desire.' },
+      { id: '3.4', emoji: '🧭', color: 'text-sage', title: 'Ownership over correctness',
+        quote: 'Wherever a child is asked to choose—whether a category, a coin placement, an idea, or a shop name—the choice is theirs, and there is no wrong answer.',
+        heading: 'Self-Generated Agency:',
+        body: 'Facilitators guide the process; they do not supply answers. A confident, self-generated idea is worth more at this age than a technically sound one handed down by an adult.' },
+      { id: '3.5', emoji: '✂️', color: 'text-rust', title: 'Hands-on over written',
+        quote: 'Every concept in the programme has a physical or visual form: cards to sort, coins to place, pictures to draw.',
+        heading: 'Reasoning by Doing:',
+        body: 'Primary-age children reason more reliably through doing than through worksheets or lecture. We keep the desks messy with wood scraps, markers, cardboard, and coins.' },
+    ];
 
-    // Habit Card Click-to-Expand Toggle
-    function toggleHabitDetail(cardElement) {
-      const detail = cardElement.querySelector('.habit-expanded');
-      const toggleText = cardElement.querySelector('.habit-toggle-text');
-      
-      if (detail.classList.contains('hidden')) {
-        detail.classList.remove('hidden');
-        toggleText.textContent = '— Collapse Workshop Action';
-      } else {
-        detail.classList.add('hidden');
-        toggleText.textContent = '+ Expand Workshop Action';
-      }
-    }
-
-    // Guiding Beliefs Tab Switcher
-    function selectBelief(index) {
-      // Hide all panels
-      for (let i = 1; i <= 5; i++) {
-        const panel = document.getElementById('belief-content-' + i);
-        const tab = document.getElementById('tab-belief-' + i);
-        if (panel) panel.classList.add('hidden');
-        if (tab) {
-          tab.classList.remove('bg-cbNavy', 'text-paperCream');
-          tab.classList.add('bg-paperCard', 'text-cbNavy');
-        }
-      }
-
-      // Show selected panel
-      const targetPanel = document.getElementById('belief-content-' + index);
-      const targetTab = document.getElementById('tab-belief-' + index);
-      if (targetPanel) targetPanel.classList.remove('hidden');
-      if (targetTab) {
-        targetTab.classList.add('bg-cbNavy', 'text-paperCream');
-        targetTab.classList.remove('bg-paperCard', 'text-cbNavy');
-      }
-    }
-
-    // Form Submission Handling
-    function handleFormSubmission(event) {
-      event.preventDefault();
-      const applicantName = document.getElementById('applicantName').value.trim();
-      const applicantRole = document.getElementById('applicantRole');
-      const roleText = applicantRole.options[applicantRole.selectedIndex].text;
-      
-      const form = document.getElementById('enrolmentForm');
-      const confirmationBox = document.getElementById('confirmationBox');
-      const confirmationDetails = document.getElementById('confirmationDetails');
-
-      confirmationDetails.textContent = `Salutations, ${applicantName}! We have officially logged your docket as ${roleText}. Our facilitator desk will dispatch your physical workshop packet directly.`;
-
-      form.classList.add('hidden');
-      confirmationBox.classList.remove('hidden');
-      confirmationBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    }
-
-    // Reset Form
-    function resetEnrolmentForm() {
-      const form = document.getElementById('enrolmentForm');
-      const confirmationBox = document.getElementById('confirmationBox');
-      form.reset();
-      form.classList.remove('hidden');
-      confirmationBox.classList.add('hidden');
-    }
+    const STEPS = [
+      { emoji: '🎡', color: 'text-rust', title: 'The Vision Wheel',      text: 'Mapping out passions, sports, craft hobbies, and community relationships.' },
+      { emoji: '🪞', color: 'text-teal', title: 'Future-Self Drawing',   text: 'Drawing what their hands want to create, before mentioning coins or business plans.' },
+      { emoji: '🪙', color: 'text-gold', title: 'The Coin Allocation',   text: 'Allocating 10 play coins into wants, needs, tools, and gifts to surface personal instincts.' },
+      { emoji: '📣', color: 'text-sage', title: 'The 90-Sec Spark Pitch', text: 'Saying the idea out loud to peers. Taking ownership with full confidence.' },
+    ];
   </script>
 
+  <!-- ============================================================
+       4. BEHAVIOUR
+       ============================================================ -->
+  <script>
+    const $ = (sel, root = document) => root.querySelector(sel);
+    const html = (strings, ...vals) => strings.reduce((out, s, i) => out + s + (vals[i] ?? ''), '');
+
+    /* ---------- Navigation ---------- */
+    function renderNav() {
+      $('#desktopNav').innerHTML =
+        NAV.map(n => html`<a href="${n.href}" class="nav-link">[ ${n.label} ]</a>`).join('') +
+        html`<a href="#enquiry" class="btn-accent ml-3 !px-4 !py-2 !text-sm">Enrolment Docket ✎</a>`;
+
+      $('#mobileMenu').innerHTML =
+        html`<span class="tape-gold relative mx-auto mb-2 block h-3 w-24"></span>` +
+        NAV.map(n => html`<a href="${n.href}" class="block border-b border-dashed border-navy/20 py-2 text-sm font-bold">➔ ${n.long}</a>`).join('') +
+        html`<a href="#enquiry" class="btn-accent mt-2 w-full !py-2.5">File Enrolment Inquiry</a>`;
+    }
+
+    function setupMobileMenu() {
+      const btn = $('#menuBtn'), menu = $('#mobileMenu'), icon = $('#menuIconPath');
+      const ICON_OPEN = 'M6 18L18 6M6 6l12 12', ICON_CLOSED = 'M4 6h16M4 12h16M4 18h16';
+
+      const setOpen = open => {
+        menu.classList.toggle('hidden', !open);
+        btn.setAttribute('aria-expanded', open);
+        icon.setAttribute('d', open ? ICON_OPEN : ICON_CLOSED);
+      };
+
+      btn.addEventListener('click', () => setOpen(btn.getAttribute('aria-expanded') !== 'true'));
+      menu.addEventListener('click', e => { if (e.target.closest('a')) setOpen(false); });
+    }
+
+    /* ---------- Habit cards (click to expand) ---------- */
+    function renderHabits() {
+      $('#habitGrid').innerHTML = HABITS.map((h, i) => html`
+        <button type="button" aria-expanded="false"
+                class="habit-card flex flex-col justify-between rounded-xl border-2 border-navy bg-card p-5 text-left shadow-retro transition-all hover:-translate-y-1 ${h.wide ? 'md:col-span-2' : ''}">
+          <div>
+            <div class="mb-2 flex items-start justify-between">
+              <span class="label rounded border border-navy/30 bg-paper-dark px-2 py-0.5 ${h.color}">Habit 0${i + 1}</span>
+              <span class="text-2xl">${h.emoji}</span>
+            </div>
+            <h4 class="font-brand text-lg font-bold leading-snug">${h.title}</h4>
+            <p class="mt-2 text-sm text-navy/80">${h.summary}</p>
+          </div>
+          <div class="habit-detail mt-4 hidden rounded border-t-2 border-dashed border-navy/20 bg-cream p-3 font-type text-xs">
+            <strong class="mb-1 block text-teal">${h.heading}</strong>${h.detail}
+          </div>
+          <span class="habit-toggle mt-3 block text-right font-type text-[11px] font-bold text-teal underline">+ Expand Workshop Action</span>
+        </button>`).join('');
+
+      $('#habitGrid').addEventListener('click', e => {
+        const card = e.target.closest('.habit-card');
+        if (!card) return;
+        const open = card.getAttribute('aria-expanded') !== 'true';
+        card.setAttribute('aria-expanded', open);
+        $('.habit-detail', card).classList.toggle('hidden', !open);
+        $('.habit-toggle', card).textContent = open ? '— Collapse Workshop Action' : '+ Expand Workshop Action';
+      });
+    }
+
+    /* ---------- Guiding beliefs (tabs) ---------- */
+    function renderBeliefs() {
+      const tabs = $('#beliefTabs'), quote = $('#beliefQuote');
+      BELIEFS.forEach((b, i) => {
+        const tab = document.createElement('button');
+        tab.type = 'button';
+        tab.role = 'tab';
+        tab.className = 'belief-tab';
+        tab.dataset.index = i;
+        tab.innerHTML = `<span>${b.id} ${b.title}</span><span>➔</span>`;
+        tabs.insertBefore(tab, quote);
+      });
+
+      tabs.addEventListener('click', e => {
+        const tab = e.target.closest('.belief-tab');
+        if (tab) selectBelief(+tab.dataset.index);
+      });
+      selectBelief(0);
+    }
+
+    function selectBelief(index) {
+      const b = BELIEFS[index];
+      document.querySelectorAll('.belief-tab').forEach((t, i) =>
+        t.setAttribute('aria-selected', i === index));
+
+      $('#beliefBody').innerHTML = html`
+        <div class="flex items-center justify-between border-b border-navy/30 pb-2">
+          <span class="label ${b.color}">GUIDING BELIEF ${b.id}</span>
+          <span class="text-xl">${b.emoji}</span>
+        </div>
+        <h3 class="font-brand text-2xl font-bold sm:text-3xl">${b.title}</h3>
+        <p class="font-serif text-lg italic leading-relaxed sm:text-xl">“${b.quote}”</p>
+        <div class="rounded-lg border border-navy/40 bg-cream p-4 text-sm leading-relaxed">
+          <strong class="label mb-1 block text-teal">${b.heading}</strong>${b.body}
+        </div>`;
+    }
+
+    /* ---------- Discovery steps ---------- */
+    function renderSteps() {
+      $('#stepGrid').innerHTML = STEPS.map((s, i) => html`
+        <div class="rounded-lg border-2 border-navy bg-cream p-4 shadow-retro-sm">
+          <span class="mb-1 block text-xs font-bold ${s.color}">STEP 0${i + 1}</span>
+          <div class="mb-1 text-xl">${s.emoji}</div>
+          <strong class="block font-brand text-base">${s.title}</strong>
+          <p class="mt-1 text-xs text-navy/75">${s.text}</p>
+        </div>`).join('');
+    }
+
+    /* ---------- Enrolment form ---------- */
+    function setupForm() {
+      const form = $('#enrolmentForm'), box = $('#confirmation');
+
+      form.addEventListener('submit', e => {
+        e.preventDefault();
+        const name = $('#applicantName').value.trim();
+        const role = $('#applicantRole').value;
+        $('#confirmationText').textContent =
+          `Salutations, ${name}! We have officially logged your docket as ${role}. Our facilitator desk will dispatch your physical workshop packet directly.`;
+        form.classList.add('hidden');
+        box.classList.remove('hidden');
+        box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      });
+
+      $('#resetBtn').addEventListener('click', () => {
+        form.reset();
+        form.classList.remove('hidden');
+        box.classList.add('hidden');
+      });
+    }
+
+    /* ---------- Init ---------- */
+    renderNav();
+    setupMobileMenu();
+    renderHabits();
+    renderBeliefs();
+    renderSteps();
+    setupForm();
+  </script>
 </body>
 </html>
