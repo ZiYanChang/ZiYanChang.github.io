@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -590,6 +591,35 @@
         </div>`).join('');
     }
 
+    /* ---------- Enrolment form ---------- */
+    function setupForm() {
+      const form = $('#enrolmentForm'), box = $('#confirmation');
+
+      form.addEventListener('submit', e => {
+        e.preventDefault();
+        const name = $('#applicantName').value.trim();
+        const role = $('#applicantRole').value;
+        $('#confirmationText').textContent =
+          `Salutations, ${name}! We have officially logged your docket as ${role}. Our facilitator desk will dispatch your physical workshop packet directly.`;
+        form.classList.add('hidden');
+        box.classList.remove('hidden');
+        box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      });
+
+      $('#resetBtn').addEventListener('click', () => {
+        form.reset();
+        form.classList.remove('hidden');
+        box.classList.add('hidden');
+      });
+    }
+
+    /* ---------- Init ---------- */
+    renderNav();
+    setupMobileMenu();
+    renderHabits();
+    renderBeliefs();
+    renderSteps();
+    setupForm();
   </script>
 </body>
 </html>
